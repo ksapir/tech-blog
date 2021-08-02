@@ -24,10 +24,10 @@ const userData = [
     {
         username: "david_d",
         email: "dd@gmail.com",
-        password: "password5"
+        password: "password5",
     },
 ];
 
-const seedUsers = () = User.bulkCreate(userData);
+const seedUsers = () => User.bulkCreate(userData);
 
 module.exports = seedUsers;

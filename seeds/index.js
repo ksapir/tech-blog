@@ -1,8 +1,8 @@
-const sequelize = requite('../config/connection');
+const sequelize = require('../config/connection');
 
 const seedUsers = require('./userSeeds');
-const seedPosts = requite('./postSeeds');
-const seedComments = rquite('./commentSeeds');
+const seedPosts = require('./postSeeds');
+const seedComments = require('./commentSeeds');
 
 const seedEverything = async () => {
     await sequelize.sync({ force: true });
