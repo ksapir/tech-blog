@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
 
-router.get('/', async (req, rest) => {
+router.get('/', async (req, res) => {
     try{
-        const postsData = await Post.findAll({
+        const postsData = await Post.findAll(
+          {
             attributes: [
                 'id',
                 'title',
@@ -14,15 +15,17 @@ router.get('/', async (req, rest) => {
             include: [{
                 model: Comment,
                 attributes: ['id', 'comment_content', 'post_id'
-                ],
+                ]},
+                {
                 model: User,
                 attributes: ['username']
             }]
-        });
+        }
+        );
 
-    const posts = postsData.map((post) => post.get({ plain: true }));
+    const postsDataJson = postsData.map((post) => post.get({ plain: true }));
     res.render('homepage',{
-        posts,
+        postsDataJson,
         logged_in: req.session.logged_in
     });
     } catch (err) {
@@ -33,6 +36,13 @@ router.get('/', async (req, rest) => {
 router.get('/post/:id', async (req, res) => {
     try {
       const postData = await Post.findByPk(req.params.id, {
+        attributes: [
+          'id',
+          'title',
+          'post_content',
+          'date_created',
+          'post_content',
+      ],
         include: [
           {
             model: User,
@@ -56,7 +66,7 @@ router.get('/post/:id', async (req, res) => {
   router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
-      res.redirect('/profile');
+      res.redirect('/dashboard');
       return;
     }
   
