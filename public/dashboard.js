@@ -5,7 +5,7 @@ const newFormHandler = async (event) => {
     const post_content = document.querySelector('#details').value.trim();
   
     if (username && post_content) {
-      const response = await fetch(`/`, {
+      const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({ title, post_content}),
         headers: {
@@ -30,18 +30,16 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/profile');
+        document.location.replace('/dashboard');
       } else {
         alert('Failed to delete post');
       }
     }
   };
   
-  document.querySelector('.new-post-form')
-    document.addEventListener('submit', newFormHandler);
+  document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
   
-  document.querySelector('.post-list')
-    document.addEventListener('click', delButtonHandler);
+  document.querySelector('.post-list').addEventListener('click', delButtonHandler);
   
 
     
