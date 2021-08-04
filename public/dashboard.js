@@ -1,11 +1,11 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    const username = document.querySelector('#post-username').value.trim();
-    const post_content = document.querySelector('#post-desc').value.trim();
+    const username = document.querySelector('#title').value.trim();
+    const post_content = document.querySelector('#details').value.trim();
   
     if (username && post_content) {
-      const response = await fetch(`/api/posts`, {
+      const response = await fetch(`/`, {
         method: 'POST',
         body: JSON.stringify({ title, post_content}),
         headers: {
@@ -14,7 +14,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/profile');
+        document.location.replace('/dashboard');
       } else {
         alert('Failed to create post');
       }
@@ -37,11 +37,11 @@ const newFormHandler = async (event) => {
     }
   };
   
-  document
-    .querySelector('.new-post-form')
-    .addEventListener('submit', newFormHandler);
+  document.querySelector('.new-post-form')
+    document.addEventListener('submit', newFormHandler);
   
-  document
-    .querySelector('.post-list')
-    .addEventListener('click', delButtonHandler);
+  document.querySelector('.post-list')
+    document.addEventListener('click', delButtonHandler);
   
+
+    

@@ -54,7 +54,7 @@ router.get('/post/:id', async (req, res) => {
       const post = postData.get({ plain: true });
   
       res.render('post', {
-        ...post,
+        ...post, 
         logged_in: req.session.logged_in
       });
     } catch (err) {
@@ -73,4 +73,9 @@ router.get('/post/:id', async (req, res) => {
     res.render('login');
   });
   
+  router.get("/logout", (req,res)=>{
+    req.session.destroy();
+    res.send("logged out");
+})
+
   module.exports = router;
