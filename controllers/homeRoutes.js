@@ -73,9 +73,9 @@ router.get('/post/:id', async (req, res) => {
     res.render('login');
   });
   
-  router.get("/logout", (req,res)=>{
-    req.session.destroy();
-    res.send("logged out");
-})
+//   router.get("/logout", (req,res)=>{
+//     req.session.destroy();
+//     res.send("logged out");
+// })
 
   module.exports = router;
